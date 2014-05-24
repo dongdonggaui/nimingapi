@@ -13,8 +13,6 @@ use app\modules\v1\models\Nmecho;
 use app\modules\v1\models\PrimeKey;
 use app\common\utilities\MathUtility;
 use yii\data\ActiveDataProvider;
-use yii\rest\CreateAction;
-use yii\web\JsonResponseFormatter;
 use yii\db\Query;
 use Yii;
 use yii\helpers\Url;
@@ -54,6 +52,9 @@ class NmechoController extends common\controllers\NmechoController
          * @var \yii\db\ActiveRecord $model
          */
         $model = new $this->modelClass();
+        // 获取当前表的主键最大值，然后加 1 插入
+        $max = Nmecho::maxPrimeKey();
+        $model->setAttribute('id', ''.($max + 1));
         $model->load(Yii::$app->getRequest()->getBodyParams(), '');
         if ($model->save()) {
             $response = Yii::$app->getResponse();

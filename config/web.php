@@ -39,6 +39,8 @@ $config = [
             'rules' => [
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'v1/nmecho'],
                 '<module>/<controller>/<action>' => '<module>/<controller>/<action>',
+                '<module>' => '<module>/default/index',
+                '' => 'site/index',
             ],
         ]
     ],
