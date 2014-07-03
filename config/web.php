@@ -37,9 +37,13 @@ $config = [
             'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'v1/nmecho'],
-                '<module>/<controller>/<action>' => '<module>/<controller>/<action>',
-                '<module>' => '<module>/default/index',
+                ['class' => 'yii\rest\UrlRule', 'controller' => ['v1/nmecho','v1/user', 'v1/relationship']],
+                ['class' => 'yii\web\UrlRule', 'pattern' => '<module:\w+>/login', 'route' => '<module>/user/verify', 'verb' => 'POST'],
+                ['class' => 'yii\web\UrlRule', 'pattern' => '<module:\w+>/register', 'route' => '<module>/user/create', 'verb' => 'POST'],
+                ['class' => 'yii\web\UrlRule', 'pattern' => '<module:\w+>/update', 'route' => '<module>/user/reset', 'verb' => 'PUT'],
+                ['class' => 'yii\web\UrlRule', 'pattern' => '<module:\w+>/chatlogin', 'route' => '<module>/user/exchangechattoken', 'verb' => 'GET'],
+                '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
+                '<module:\w+>' => '<module>/default/index',
                 '' => 'site/index',
             ],
         ]

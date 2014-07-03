@@ -44,4 +44,15 @@ class PrimeKey extends \yii\db\ActiveRecord
             'max' => 'Max',
         ];
     }
+
+    public static function maxPrimeKey($tableName)
+    {
+        $result = self::findOne(['table_name' => $tableName]);
+
+        if ($result != NULL) {
+            return $result->max;
+        }
+
+        return 0;
+    }
 }
